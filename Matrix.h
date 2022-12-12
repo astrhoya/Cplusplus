@@ -6,33 +6,33 @@ using namespace std;
 
 template <typename T> class Matrix {
 private:
-  int row, col;
+  int cols, rows;
   T **mat;
 
 public:
-  Matrix(int rows = 0, int cols = 0) : row(rows), col(cols), mat(NULL) {
+  Matrix(int cols, int rows) : cols(cols), rows(rows), mat(NULL) {
     mat = new T *[rows];
-    for (int i = 0; i < rows; i++)
+    for (int i = 0; i < rows; i++) {
       mat[i] = new T[cols];
-  }
-  ~Matrix() {
-    for (int i = 0; i < row; i++)
-      delete[] mat[i];
-    delete[] mat;
-  }
-  T &elem(int r, int c) { return mat[r][c]; }
-  int getRows() { return row; }
-  int getCols() { return col; }
-  T **getMatrix() { return mat; }
-  void print(string title = "Mat") {
-    cout << title << " " << row << "X" << col << endl;
-    for (int y = 0; y < row; y++) {
-      for (int x = 0; x < col; x++) {
-        cout << mat[y][x];
-      }
-      cout << endl;
     }
   }
+
+  ~Matrix() {
+    for (int i = 0; i < this->rows; i++) {
+      delete[] mat[i];
+    }
+    delete[] mat;
+  }
+
+  int getRows() { return this->rows; };
+
+  int getCols() { return this->cols; };
+
+  T &elem(int r, int c) { return mat[r][c]; };
+
+  void print() { cout << "Mat" << rows << "x" << cols; };
+
+  T **getMartix() { return mat; };
 };
 
 #endif

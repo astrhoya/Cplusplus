@@ -15,7 +15,14 @@ private:
   friend class RankingBoard;
 public:
 	PlayInfo(string name="XXX", int nItem=0): name(name), nItem(nItem) {}
-
+  friend ostream& operator << (ostream& os, const PlayInfo& obj){
+    os<<obj.name<<"\t"<<obj.nItem;
+    return os;
+  }
+  friend istream& operator >> (istream& is, PlayInfo& obj){
+    is>>obj.name>>obj.nItem;
+    return is;
+  }
 };
 
 class RankingBoard {
